@@ -8,10 +8,8 @@ function Header() {
                 <a href='/'>home
                     </a> </li>
             <li>about us</li>
-
             <li>contact</li>
             <li>help</li>
-
         </ul>
     </div>
   )
