@@ -125,8 +125,10 @@ function add(address,loaction,time,name,pincode,closingtime,dosage){
           axios.post(`http://localhost:8081/homeadding/${address}/${loaction}/${time}/${name}/${pincode}/${closingtime}/${dosage}`)
           .then((res) => {
             console.log(res);
-            
           })
+          .catch((err) => {
+            console.error(err);
+            });
         }
 
 
@@ -268,7 +270,7 @@ function add(address,loaction,time,name,pincode,closingtime,dosage){
         <button onClick={()=>{
         add(address,location,time,name,pincode,closingtime,dosage);
         alert("data added")
-        window.location.reload();
+        // window.location.reload();
         
       }}>Add Address</button>
         

@@ -21,10 +21,11 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
- host: '127.0.0.1',
- user: 'root',
- password: '9943060731',
- database: 'login',
+ host: 'btwlkzyjr1mwd39flzpv-mysql.services.clever-cloud.com',
+ user: 'uckxz1hdfxpgj3st',
+ password: 'YXYnIOurx5AIRRfHOaQE',
+ database: 'btwlkzyjr1mwd39flzpv',
+ port:'3306'
  
 });
 
@@ -202,7 +203,7 @@ app.post('/mail/:x/:name/:address',(req,res)=>{
 
 
 app.post('/signup',(req,res)=>{
-    let sql="INSERT INTO log(username,password,emailid) VALUES(?,?,?)";
+    let sql="INSERT INTO log(username,password,emailid,status,cid,currentid) VALUES(?,?,?,1,1,1)";
     let email = req.body.email;
     let user = req.body.user;
     let pass = req.body.pass;
