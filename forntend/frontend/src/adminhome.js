@@ -121,15 +121,31 @@ function Adminhome() {
 
 
 
-function add(address,loaction,time,name,pincode,closingtime,dosage){
-          axios.post(`http://localhost:8081/homeadding/${address}/${loaction}/${time}/${name}/${pincode}/${closingtime}/${dosage}`)
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            console.error(err);
-            });
-        }
+// function add(address,loaction,time,name,pincode,closingtime,dosage){
+
+//           axios.post(`http://localhost:8081/homeadding/${address}/${loaction}/${time}/${name}/${pincode}/${closingtime}/${dosage}`)
+//           .then((res) => {
+//             console.log(address);
+//             console.log(res);
+//           })
+//           .catch((err) => {
+//             console.error(err);
+//             });
+      
+//         console.log(address,loaction);
+// }
+
+
+
+function add() {
+  const avab = "hello";
+  axios.post(`http://localhost:8081/homeadding/${name}/${address}/${pincode}/${closingtime}/${time}/${location}/${dosage}`).then((res)=>{
+    console.log(res.data)
+  }).catch((err)=>{
+    console.error(err)
+  })
+  
+}
 
 
 
@@ -268,7 +284,8 @@ function add(address,loaction,time,name,pincode,closingtime,dosage){
 
         </div>
         <button onClick={()=>{
-        add(address,location,time,name,pincode,closingtime,dosage);
+        // add(address,location,time,name,pincode,closingtime,dosage);
+        add();
         alert("data added")
         // window.location.reload();
         

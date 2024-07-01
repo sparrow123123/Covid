@@ -21,11 +21,11 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
- host: 'btwlkzyjr1mwd39flzpv-mysql.services.clever-cloud.com',
- user: 'uckxz1hdfxpgj3st',
- password: 'YXYnIOurx5AIRRfHOaQE',
- database: 'btwlkzyjr1mwd39flzpv',
- port:'3306'
+ host: 'mysql-2b1fb47c-dhanushlib.a.aivencloud.com',
+ user: 'avnadmin',
+ password: 'AVNS_sdwvMqm_eFn5ewoJXi3',
+ database: 'npm',
+ port:'21992'
  
 });
 
@@ -315,41 +315,57 @@ app.post('/sendid/:id',(req,res)=>{
     console.log(id)
 
 })
-
-
-
-
-
-
-
-
-
-app.post('/homeadding/:address/:location/:time/:name/:pincode/:closingtime/:dosage',(req,res)=>{
-    let sql = "INSERT INTO datalocat(name, location,address,pincode ,optime ,cltime ,slot,dosage)values(?,?,?,?,?,?,10,?)";
- 
-    let address =req.params.address;
-    let location = req.params.location;         
-    let time = req.params.time;
+app.post('/homeadding/:name/:address/:location/:time/:closingtime/:pincode/:dosage',(req,res)=>{
     let name = req.params.name;
-    let pin = req.params.pincode;
-    let closetime = req.params.closingtime
-    let dos = req.params.dosage;
-    console.log(address,location,time,name,pin,closetime,dos);
-    db.query(sql,[name,location,address,pin,time,closetime,dos],(err,result)=>{
+    let address = req.params.address;
+    let location = req.params.location;
+    let time = req.params.time;
+    let closingtime = req.params.closingtime;
+    let pincode = req.params.pincode;
+    let dosage = req.params.dosage;
+    let sql = "INSERT INTO datalocat(name, location,address,pincode ,optime ,cltime ,slot,dosage)values(?,?,?,67887,?,?,10,?)";
+    db.query(sql,[name,location,address,time,closingtime,dosage],(err,result)=>{
         if(err){
-            console.log(err);
-            res.send.apply(res)
+            console.error(err)
         }
         else{
-        res.send("success")
+            res.send(result);
         }
     })
 
-
-
-   
-   
+    console.log(name,address,location,pincode,time,closingtime);
 })
+
+
+
+
+
+
+
+
+// app.post('/homeadding/:address/:location/:time/:name/:pincode/:closingtime/:dosage',(req,res)=>{
+//     let sql = "INSERT INTO datalocat(name, location,address,pincode ,optime ,cltime ,slot,dosage)values(?,?,?,?,?,?,10,?)";
+ 
+//     let address =req.params.address;
+//     let location = req.params.location;         
+//     let time = req.params.time;
+//     let name = req.params.name;
+//     let pin = req.params.pincode;
+//     let closetime = req.params.closingtime
+//     let dos = req.params.dosage;
+//     // console.log(address,location,time,name,pin,closetime,dos);
+//     // db.query(sql,[name,location,address,pin,time,closetime,dos],(err,result)=>{
+//     //     if(err){
+//     //         console.log(err);w
+//     //         res.send.apply(res)
+//     //     }
+//     //     else{
+//     //     res.send("success")
+//     //     }
+//     // })
+// console.log(address,loaction,time,name);
+
+// })
 app.delete('/homerem/:id', (req, res) => {
     let sql = "DELETE FROM datalocat WHERE centreid=?";
     let id = req.params.id;

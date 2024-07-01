@@ -62,6 +62,9 @@ async  function select(){
     <h2 id='location'>location: {bookcentre.location}</h2>
     <h2 id='address'>address: {bookcentre.address}</h2>
     <h2 id='time'>time: {bookcentre.optime}AM - {bookcentre.cltime}PM</h2>
+    <button onClick={()=>{
+        navigate("/adminhome");
+    }}> hk</button>
 
 
 

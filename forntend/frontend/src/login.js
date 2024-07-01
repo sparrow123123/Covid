@@ -12,7 +12,7 @@ function Login() {
     {
       event.preventDefault();
       
-       axios.post('http://localhost:8081/',{username,password})
+       axios.post('http://localhost:8081',{username,password})
        .then((res)=>{
         if(res.data==='fail'){
           alert("Invalid username or password")
