@@ -24,7 +24,7 @@ function Home() {
  async function searchmore(searchany, shany) {
     console.log(searchany, shany)
     try {
-      const response = await axios.get(`http://localhost:8081/s/${searchany}/${shany}`)
+      const response = await axios.get(`https://covid-35.onrender.com/s/${searchany}/${shany}`)
       return response.data;
     } catch (error) {
       console.error(error);
@@ -34,7 +34,7 @@ function Home() {
     function handleSubmit(event){
         event.preventDefault();
        
-        axios.post('http://localhost:8081/home',{search})
+        axios.post('https://covid-35.onrender.com/home',{search})
         .then((res)=>{
             if(res.data==='fail'){
                 alert("Please enter another location");
@@ -73,7 +73,7 @@ function Home() {
     useEffect(()=>{
         function getAll(){
        
-            axios.get('http://localhost:8081/home1')
+            axios.get('https://covid-35.onrender.com/home1')
             .then((res)=>{
                 setcentres(res.data)
     
@@ -94,7 +94,7 @@ function Home() {
   function getCentre(){
     
        
-            axios.get('http://localhost:8081/home2/'+search)
+            axios.get('https://covid-35.onrender.com/home2/'+search)
             .then((res)=>{
                 setcentres(res.data)
               
@@ -109,7 +109,7 @@ function Home() {
         function slot(id){
        
 
-            axios.get(`http://localhost:8081/homeslot/${id}`)
+            axios.get(`https://covid-35.onrender.com/homeslot/${id}`)
             .then((res)=>{
                 console.log(res)
                 alert("slot added")
@@ -143,7 +143,7 @@ function Home() {
         function drop(input){
             console.log('fello');
             console.log(input);
-            axios.get(`http://localhost:8081/home2/${input}`)
+            axios.get(`https://covid-35.onrender.com/home2/${input}`)
             .then((res)=>{
                 setcentres(res.data)
               
@@ -159,7 +159,7 @@ function Home() {
         }
         function checkst(){
             
-            axios.get(`http://localhost:8081/homecheck`)
+            axios.get(`https://covid-35.onrender.com/homecheck`)
             .then((res)=>{
                 if (res.data==="true"){
                     
@@ -179,7 +179,7 @@ function Home() {
         }
 
         function alter(id){
-            axios.get(`http://localhost:8081/homealter/${id}`)
+            axios.get(`https://covid-35.onrender.com/homealter/${id}`)
             .then((res)=>{
                 console.log(res);
             })
@@ -187,7 +187,7 @@ function Home() {
     
 
         function sendid(id){
-            axios.post(`http://localhost:8081/sendid/${id}`).then((res)=>{
+            axios.post(`https://covid-35.onrender.com/sendid/${id}`).then((res)=>{
                 console.log(res)
                 
             })
@@ -231,7 +231,7 @@ function Home() {
         <div className='contmain'>
            
 
-         <h2 id='locathead' >LOCATION</h2>
+         <h2  id='locathead' >LOCATION</h2>
         <label htmlFor='seacrch' ></label>  
     <input type="text" id='search' name='search' placeholder='Search...' onChange={e=>setsearch(e.target.value)}/>
     <button id='s-btn' onClick={handleSubmit}>search</button>
@@ -249,7 +249,7 @@ function Home() {
        
       }} >search</button>
       <div className="dropdown-content">
-        <button id="chennai" onClick={()=>{searchdrop('chennai')}}>chennai</button>
+        <button   id="chennai" onClick={()=>{searchdrop('chennai')}}>chennai</button>
         <button id="cuddalore" onClick={()=>{searchdrop('cuddalore')}}>cuddalor</button>
         <button id ="tambaram" onClick={()=>{searchdrop('tambaram')}}>tambaram</button>
         <button id ="chromepet" onClick={()=>{searchdrop('chromepet')}}>chromepet</button>

@@ -18,7 +18,7 @@ function Book() {
 
 
 async  function select(){
-  await axios.get(`http://localhost:8081/booking`)
+  await axios.get(`https://covid-35.onrender.com/booking`)
     .then((res)=>{
         console.log(res.data[0].cid)
         setid(res.data[0].cid)
@@ -38,7 +38,7 @@ async  function select(){
    select()
    async function display(centreid){
     try {
-        const res = await axios.get(`http://localhost:8081/display/${centreid}`)
+        const res = await axios.get(`https://covid-35.onrender.com/display/${centreid}`)
         if(res.data==='fail'){
             alert("no reservation")
         }

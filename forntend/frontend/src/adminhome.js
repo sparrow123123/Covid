@@ -24,7 +24,7 @@ function Adminhome() {
     function handleSubmit(event){
         event.preventDefault();
        
-        axios.post('http://localhost:8081/home',{search})
+        axios.post('https://covid-35.onrender.com/home',{search})
         .then((res)=>{
             if(res.data=='fail'){
                 alert("Please enter another location");
@@ -59,7 +59,7 @@ function Adminhome() {
     },[])
     function getAll(){
        
-      axios.get('http://localhost:8081/home1')
+      axios.get('https://covid-35.onrender.com/home1')
       .then((res)=>{
           setcentres(res.data)
           
@@ -77,7 +77,7 @@ function Adminhome() {
   function getCentre(){
     
        
-            axios.get('http://localhost:8081/home2/'+search)
+            axios.get('https://covid-35.onrender.com/home2/'+search)
             .then((res)=>{
                 setcentres(res.data)
               
@@ -92,7 +92,7 @@ function Adminhome() {
     function slot(id){
        
 
-            axios.get(`http://localhost:8081/homeslot/${id}`)
+            axios.get(`https://covid-35.onrender.com/homeslot/${id}`)
             .then((res)=>{
                 console.log(res)
                 alert("slot added")
@@ -104,7 +104,7 @@ function Adminhome() {
         function reset(id){
        
 
-          axios.get(`http://localhost:8081/homereset/${id}`)
+          axios.get(`https://covid-35.onrender.com/homereset/${id}`)
           .then((res)=>{
               console.log(res)
               alert("slot reseted")
@@ -139,24 +139,28 @@ function Adminhome() {
 
 function add() {
   const avab = "hello";
-  axios.post(`http://localhost:8081/homeadding/${name}/${address}/${pincode}/${closingtime}/${time}/${location}/${dosage}`).then((res)=>{
+  axios.post(`https://covid-35.onrender.com/homeadding/${name}/${address}/${pincode}/${closingtime}/${time}/${location}/${dosage}`).then((res)=>{
     console.log(res.data)
+   
   }).catch((err)=>{
     console.error(err)
   })
+  window.location.href = '/adminhome';
   
 }
 
 
 
         function rem(id) {
-          axios.delete(`http://localhost:8081/homerem/${id}`)
+          axios.delete(`https://covid-35.onrender.com/homerem/${id}`)
               .then((res) => {
 
                 if(res.data==="success"){
                   console.log("Delete successful:", res.data);
                   alert("data removed")
-                  window.location.reload();
+
+                  
+                 
                 }
                 else{
                   alert("ID not found")
@@ -167,7 +171,7 @@ function add() {
               });
       }
      function dosadd(id,dosid){
-      axios.get(`http://localhost:8081/dosadd/${id}/${dosid}`)
+      axios.get(`https://covid-35.onrender.com/dosadd/${id}/${dosid}`)
       .then((res)=>{
         if(res.data==='success'){
           alert('Dose added to the list');
@@ -177,7 +181,7 @@ function add() {
      }
      function checkst(){
             
-      axios.get(`http://localhost:8081/homecheck`)
+      axios.get(`https://covid-35.onrender.com/homecheck`)
       .then((res)=>{
           if (res.data==="true"){
       
@@ -213,6 +217,7 @@ function add() {
                 
             <button onClick={()=>{
         checkst()
+        
         navigate('/login')
     }}>logout
 </button>
