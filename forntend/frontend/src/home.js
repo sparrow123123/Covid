@@ -59,7 +59,7 @@ function Home() {
           console.error(err);
         });
     }
-    getAll(); 
+    getAll();
   }, []);
 
   function getCentre() {
@@ -166,9 +166,9 @@ function Home() {
 
     const addr = val.value;
     console.log(addr);
-    axios.get(`http://localhost:8081/dphelp/${a}`).then((res) => {
-      setcentres(res.data);
-    });
+    // axios.get(`http://localhost:8081/dphelp/${a}`).then((res) => {
+    //   setcentres(res.data);
+    // });
   }
 
   return (
