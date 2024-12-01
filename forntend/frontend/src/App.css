@@ -18,7 +18,7 @@
 .first{
   width:100%;
   height: 100vh;
-  background-image: url(C:\Users\0505r\OneDrive\Desktop\covid\forntend\frontend\assest\5382378.jpg);
+  /* background-image: url(C:\Users\0505r\OneDrive\Desktop\covid\forntend\frontend\assest\5382378.jpg); */
   background-repeat: repeat-y;
   background-size: cover;
 
@@ -26,7 +26,7 @@
 .sign{
   width:100%;
   height: 100vh;
-  background-image: url(C:\Users\0505r\OneDrive\Desktop\covid\forntend\frontend\assest\6471562.jpg);
+  /* background-image: url(C:\Users\0505r\OneDrive\Desktop\covid\forntend\frontend\assest\6471562.jpg); */
   background-repeat: repeat-y;
   background-size: cover;
 
@@ -218,7 +218,7 @@ tr:nth-child(even) {
 .bookin{
   width:100%;
   height: 100vh;
-  background-image: url(C:\Users\0505r\OneDrive\Desktop\covid\forntend\frontend\assest\top-view-disposable-medical-masks.jpg);
+  /* background-image: url(C:\Users\0505r\OneDrive\Desktop\covid\forntend\frontend\assest\top-view-disposable-medical-masks.jpg); */
   background-repeat: repeat-y;
   background-size: cover;
   align-items:center;
