@@ -24,7 +24,7 @@ function Bookin() {
 
 
 async  function select(){
-  await axios.get(`https://covid-35.onrender.com/booking`)
+  await axios.get(`http://localhost:8081/booking`)
     .then((res)=>{
         console.log(res.data[0].cid)
         setid(res.data[0].cid)
@@ -44,7 +44,7 @@ async  function select(){
    select()
    async function display(centreid){
     try {
-        const res = await axios.get(`https://covid-35.onrender.com/display/${centreid}`)
+        const res = await axios.get(`http://localhost:8081/display/${centreid}`)
         if(res.data==='fail'){
             alert("no reservation")
         }
@@ -64,7 +64,7 @@ function mail(){
     const address=  bookcentre.name;
 
    
-    axios.post(`https://covid-35.onrender.com/mail/${x}/${name}/${address}`)
+    axios.post(`http://localhost:8081/mail/${x}/${name}/${address}`)
     .then((res)=>{
         console.log(res.data);
         alert("s")

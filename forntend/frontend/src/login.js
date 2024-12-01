@@ -12,9 +12,10 @@ function Login() {
     {
       event.preventDefault();
       
-       axios.post('https://covid-35.onrender.com/',{username,password})
+       axios.post('http://localhost:8081/',{username,password})
        .then((res)=>{
         if(res.data==='fail'){
+          console.log(res.data);
           alert("Invalid username or password")
         }
         else{
@@ -42,7 +43,7 @@ function Login() {
     }
 function update()
     {
-    axios.get(`https://covid-35.onrender.com/update/${username}/${password}`)
+    axios.get(`http://localhost:8081/update/${username}/${password}`)
     .then((res)=>{
       console.log(res);
     })
