@@ -56,6 +56,7 @@ app.post("/", (req, res) => {
 
   let pass = req.body.password;
 
+  console.log("run");
   db.query(sql, [user, pass], (err, results) => {
     if (err) throw err;
     console.log(results);
