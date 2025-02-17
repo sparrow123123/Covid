@@ -8,7 +8,7 @@ function Bookin() {
   let navigate = useNavigate();
 
   async function select() {
-    await axios.get(`https://covid-8-be8z.onrender.com/booking`).then((res) => {
+    await axios.get(`https://covid-4-lhxq.onrender.com/booking`).then((res) => {
       console.log(res.data[0].cid);
       setid(res.data[0].cid);
     });
@@ -21,7 +21,7 @@ function Bookin() {
   async function display(centreid) {
     try {
       const res = await axios.get(
-        `https://covid-8-be8z.onrender.com/display/${centreid}`
+        `https://covid-4-lhxq.onrender.com/display/${centreid}`
       );
       if (res.data === "fail") {
         alert("no reservation");
@@ -40,7 +40,7 @@ function Bookin() {
     const address = bookcentre.name;
 
     axios
-      .post(`https://covid-8-be8z.onrender.com/mail/${x}/${name}/${address}`)
+      .post(`https://covid-4-lhxq.onrender.com/mail/${x}/${name}/${address}`)
       .then((res) => {
         console.log(res.data);
         alert("s");

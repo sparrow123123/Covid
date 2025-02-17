@@ -11,7 +11,7 @@ function Signup() {
   function handleSubmit(event)
   {
     event.preventDefault();
-    axios.post('https://covid-8-be8z.onrender.com/signup',{email,user,pass})
+    axios.post('https://covid-4-lhxq.onrender.com/signup',{email,user,pass})
     .then((res)=>{
       console.log(res);
       alert('account created')

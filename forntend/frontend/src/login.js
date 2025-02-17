@@ -12,7 +12,7 @@ function Login() {
     event.preventDefault();
 
     axios
-      .post("https://covid-8-be8z.onrender.com/", { username, password })
+      .post("https://covid-4-lhxq.onrender.com/", { username, password })
       .then((res) => {
         if (res.data === "fail") {
           console.log(res.data);
@@ -36,7 +36,7 @@ function Login() {
   }
   function update() {
     axios
-      .get(`https://covid-8-be8z.onrender.com/update/${username}/${password}`)
+      .get(`https://covid-4-lhxq.onrender.com/update/${username}/${password}`)
       .then((res) => {
         console.log(res);
       });
