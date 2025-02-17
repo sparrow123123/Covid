@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import image from "./assest/1663.jpg";
 function Login() {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
@@ -43,7 +43,14 @@ function Login() {
   }
 
   return (
-    <div className="log">
+    <div
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+      className="log"
+    >
       <div className="outlet">
         <form onSubmit={handleSubmit}>
           <div className="item">

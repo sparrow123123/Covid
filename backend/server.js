@@ -372,6 +372,18 @@ app.get("/dphelp:/addr", (req, res) => {
   console.log(search);
 });
 
+app.get("/hlocation", (req, res) => {
+  let sql = "select * from datalocat";
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(results);
+      res.send(results);
+    }
+  });
+});
+
 app.listen("8081", () => {
   console.log("Server started on port 8081");
 });

@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./header";
+import image from "./assest/6471562.jpg";
+import Hdrop from "./Hdrop";
 
 function Home() {
   const [search, setsearch] = useState("");
@@ -173,7 +175,14 @@ function Home() {
 
   return (
     <>
-      <div className="container">
+      <div
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+        className="container"
+      >
         <div className="navbar">
           <div className="navlist">
             <button
@@ -196,7 +205,8 @@ function Home() {
         </div>
 
         <div className="contmain">
-          <h2 id="locathead">LOCATION</h2>
+          <Hdrop></Hdrop>
+          <h2 id="locathead">HOSPITAL</h2>
           <label htmlFor="seacrch"></label>
           <input
             type="text"
@@ -208,6 +218,7 @@ function Home() {
           <button id="s-btn" onClick={handleSubmit}>
             search
           </button>
+          <h2>LOACTION</h2>
 
           <div className="dropdown">
             <input type="text" id="dropsearch"></input>
@@ -290,7 +301,7 @@ function Home() {
               </button>
             </div>
           </div>
-          <button onClick={newdrop}></button>
+          {/* <button onClick={newdrop}></button> */}
 
           {/* <input type='text' id='dropsearchvalue'  ></input> */}
           <div className="dropdown">
@@ -344,7 +355,7 @@ function Home() {
     </select>
   </form> */}
 
-          <div className="dp">
+          {/* <div className="dp">
             <label htmlFor="dp">name:</label>
             <select id="dp" name="dp">
               {newdroplist.map((vv) => {
@@ -355,9 +366,9 @@ function Home() {
                 );
               })}
             </select>
-          </div>
+          </div> */}
 
-          <button onClick={help}>searcj</button>
+          {/* <button onClick={help}>searcj</button> */}
         </div>
 
         <h1>Vaccination Centre</h1>
