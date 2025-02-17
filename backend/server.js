@@ -16,23 +16,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createConnection({
- host: 'mysql-2b1fb47c-dhanushlib.a.aivencloud.com',
- user: 'avnadmin',
- password: 'AVNS_sdwvMqm_eFn5ewoJXi3',
- database: 'npm',
- port:'21992'
-
-});
-
 // const db = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: '9943060731',
-//     database: 'login',
-//     port:'3306'
+//   host: "mysql-2b1fb47c-dhanushlib.a.aivencloud.com",
+//   user: "avnadmin",
+//   password: "AVNS_sdwvMqm_eFn5ewoJXi3",
+//   database: "npm",
+//   port: "21992",
+// });
 
-//    });
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "9943060731",
+  database: "login",
+  port: "3306",
+});
 
 // const db = mysql.createConnection({
 //   host: "localhost",
