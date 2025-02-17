@@ -6,7 +6,7 @@ function Hdrop() {
     // console.log(Hdrop)
    useEffect(()=>{
     function hlocation(){
-        axios.get('http://localhost:8081/hlocation').then((res)=>{
+        axios.get('https://covid-8-be8z.onrender.com/hlocation').then((res)=>{
             console.log(res.data)
             setHDrop(res.data)
         
