@@ -158,7 +158,7 @@ app.post("/mail/:x/:name/:address", (req, res) => {
 
 app.get("/signup", (req, res) => {
   let sql =
-    "INSERT INTO log(username,password,emailid,status,cid,currentid) VALUES(?,?,?,1,1,1)";
+    "INSERT INTO log(username,password,emailid,status,currentid) VALUES(?,?,?,1,1)";
   let email = req.body.email;
   let user = req.body.user;
   let pass = req.body.pass;

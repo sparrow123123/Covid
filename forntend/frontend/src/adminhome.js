@@ -20,29 +20,31 @@ function Adminhome() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    axios.post("http://localhost:8081/home", { search }).then((res) => {
-      if (res.data == "fail") {
-        alert("Please enter another location");
-        console.log(res);
-      } else {
-        console.log(search);
-        console.log(res);
+    axios
+      .post("https://covid-jw9g.onrender.com//home", { search })
+      .then((res) => {
+        if (res.data == "fail") {
+          alert("Please enter another location");
+          console.log(res);
+        } else {
+          console.log(search);
+          console.log(res);
 
-        let loaction = res.data[0].loaction;
-        let address = res.data[0].address;
-        let time = res.data[0].time;
-        let slot = res.data[0].slot;
+          let loaction = res.data[0].loaction;
+          let address = res.data[0].address;
+          let time = res.data[0].time;
+          let slot = res.data[0].slot;
 
-        getCentre();
-      }
-    });
+          getCentre();
+        }
+      });
   }
   useEffect(() => {
     getAll();
   }, []);
   function getAll() {
     axios
-      .get("http://localhost:8081/home1")
+      .get("https://covid-jw9g.onrender.com//home1")
       .then((res) => {
         setcentres(res.data);
       })
@@ -53,7 +55,7 @@ function Adminhome() {
 
   function getCentre() {
     axios
-      .get("http://localhost:8081/home2/" + search)
+      .get("https://covid-jw9g.onrender.com//home2/" + search)
       .then((res) => {
         setcentres(res.data);
       })
@@ -63,7 +65,7 @@ function Adminhome() {
   }
   function slot(id) {
     axios
-      .get(`http://localhost:8081/homeslot/${id}`)
+      .get(`https://covid-jw9g.onrender.com//homeslot/${id}`)
       .then((res) => {
         console.log(res);
         alert("slot added");
@@ -75,7 +77,7 @@ function Adminhome() {
   }
   function reset(id) {
     axios
-      .get(`http://localhost:8081/homereset/${id}`)
+      .get(`https://covid-jw9g.onrender.com//homereset/${id}`)
       .then((res) => {
         console.log(res);
         alert("slot reseted");
@@ -88,7 +90,7 @@ function Adminhome() {
 
   // function add(address,loaction,time,name,pincode,closingtime,dosage){
 
-  //           axios.post(`http://localhost:8081/homeadding/${address}/${loaction}/${time}/${name}/${pincode}/${closingtime}/${dosage}`)
+  //           axios.post(`https://covid-jw9g.onrender.com//homeadding/${address}/${loaction}/${time}/${name}/${pincode}/${closingtime}/${dosage}`)
   //           .then((res) => {
   //             console.log(address);
   //             console.log(res);
@@ -104,7 +106,7 @@ function Adminhome() {
     const avab = "hello";
     axios
       .post(
-        `http://localhost:8081/homeadding/${name}/${address}/${pincode}/${closingtime}/${time}/${location}/${dosage}`
+        `https://covid-jw9g.onrender.com//homeadding/${name}/${address}/${pincode}/${closingtime}/${time}/${location}/${dosage}`
       )
       .then((res) => {
         console.log(res.data);
@@ -117,7 +119,7 @@ function Adminhome() {
 
   function rem(id) {
     axios
-      .delete(`http://localhost:8081/homerem/${id}`)
+      .delete(`https://covid-jw9g.onrender.com//homerem/${id}`)
       .then((res) => {
         if (res.data === "success") {
           console.log("Delete successful:", res.data);
@@ -132,16 +134,18 @@ function Adminhome() {
       });
   }
   function dosadd(id, dosid) {
-    axios.get(`http://localhost:8081/dosadd/${id}/${dosid}`).then((res) => {
-      if (res.data === "success") {
-        alert("Dose added to the list");
-        window.location.reload();
-      }
-    });
+    axios
+      .get(`https://covid-jw9g.onrender.com//dosadd/${id}/${dosid}`)
+      .then((res) => {
+        if (res.data === "success") {
+          alert("Dose added to the list");
+          window.location.reload();
+        }
+      });
   }
   function checkst() {
     axios
-      .get(`http://localhost:8081/homecheck`)
+      .get(`https://covid-jw9g.onrender.com//homecheck`)
       .then((res) => {
         if (res.data === "true") {
         } else {
