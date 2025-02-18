@@ -11,7 +11,7 @@ function Signup() {
   function handleSubmit(event) {
     event.preventDefault();
     axios
-      .get("https://covid-jw9g.onrender.com//signup", { email, user, pass })
+      .get("https://covid-jw9g.onrender.com/signup", { email, user, pass })
       .then((res) => {
         console.log(res);
         alert("account created");

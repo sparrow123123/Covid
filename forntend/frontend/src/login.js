@@ -36,7 +36,7 @@ function Login() {
   }
   function update() {
     axios
-      .get(`https://covid-jw9g.onrender.com//update/${username}/${password}`)
+      .get(`https://covid-jw9g.onrender.com/update/${username}/${password}`)
       .then((res) => {
         console.log(res);
       });

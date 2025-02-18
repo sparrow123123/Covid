@@ -22,7 +22,7 @@ function Home() {
     console.log(searchany, shany);
     try {
       const response = await axios.get(
-        `https://covid-jw9g.onrender.com//s/${searchany}/${shany}`
+        `https://covid-jw9g.onrender.com/s/${searchany}/${shany}`
       );
       return response.data;
     } catch (error) {
@@ -34,7 +34,7 @@ function Home() {
     event.preventDefault();
 
     axios
-      .post("https://covid-jw9g.onrender.com//home", { search })
+      .post("https://covid-jw9g.onrender.com/home", { search })
       .then((res) => {
         if (res.data === "fail") {
           alert("Please enter another location");
@@ -55,7 +55,7 @@ function Home() {
   useEffect(() => {
     function getAll() {
       axios
-        .get("https://covid-jw9g.onrender.com//home1")
+        .get("https://covid-jw9g.onrender.com/home1")
         .then((res) => {
           setcentres(res.data);
         })
@@ -68,7 +68,7 @@ function Home() {
 
   function getCentre() {
     axios
-      .get("https://covid-jw9g.onrender.com//home2/" + search)
+      .get("https://covid-jw9g.onrender.com/home2/" + search)
       .then((res) => {
         setcentres(res.data);
 
@@ -81,7 +81,7 @@ function Home() {
   }
   function slot(id) {
     axios
-      .get(`https://covid-jw9g.onrender.com//homeslot/${id}`)
+      .get(`https://covid-jw9g.onrender.com/homeslot/${id}`)
       .then((res) => {
         console.log(res);
         alert("slot added");
@@ -106,7 +106,7 @@ function Home() {
     console.log("fello");
     console.log(input);
     axios
-      .get(`https://covid-jw9g.onrender.com//home2/${input}`)
+      .get(`https://covid-jw9g.onrender.com/home2/${input}`)
       .then((res) => {
         setcentres(res.data);
 
@@ -118,7 +118,7 @@ function Home() {
   }
   function checkst() {
     axios
-      .get(`https://covid-jw9g.onrender.com//homecheck`)
+      .get(`https://covid-jw9g.onrender.com/homecheck`)
       .then((res) => {
         if (res.data === "true") {
         } else {
@@ -130,15 +130,13 @@ function Home() {
   }
 
   function alter(id) {
-    axios
-      .get(`https://covid-jw9g.onrender.com//homealter/${id}`)
-      .then((res) => {
-        console.log(res);
-      });
+    axios.get(`https://covid-jw9g.onrender.com/homealter/${id}`).then((res) => {
+      console.log(res);
+    });
   }
 
   function sendid(id) {
-    axios.post(`https://covid-jw9g.onrender.com//sendid/${id}`).then((res) => {
+    axios.post(`https://covid-jw9g.onrender.com/sendid/${id}`).then((res) => {
       console.log(res);
     });
   }
@@ -160,7 +158,7 @@ function Home() {
   //   }
 
   function newdrop() {
-    axios.get("https://covid-jw9g.onrender.com//newdrop/").then((result) => {
+    axios.get("https://covid-jw9g.onrender.com/newdrop/").then((result) => {
       // console.log(result)
       setnewdroplist(result.data);
     });
