@@ -9,7 +9,7 @@ function Book() {
   let navigate = useNavigate();
 
   async function select() {
-    await axios.get(`https://covid-4-lhxq.onrender.com/booking`).then((res) => {
+    await axios.get(`http://localhost:8081/booking`).then((res) => {
       console.log(res.data[0].cid);
       setid(res.data[0].cid);
     });
@@ -21,9 +21,7 @@ function Book() {
   select();
   async function display(centreid) {
     try {
-      const res = await axios.get(
-        `https://covid-4-lhxq.onrender.com/display/${centreid}`
-      );
+      const res = await axios.get(`http://localhost:8081/display/${centreid}`);
       if (res.data === "fail") {
         alert("no reservation");
       } else {

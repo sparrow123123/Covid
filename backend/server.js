@@ -16,29 +16,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// const db = mysql.createConnection({
-//   host: "mysql-2b1fb47c-dhanushlib.a.aivencloud.com",
-//   user: "avnadmin",
-//   password: "AVNS_sdwvMqm_eFn5ewoJXi3",
-//   database: "npm",
-//   port: "21992",
-// });
-
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "9943060731",
-  database: "login",
-  port: "3306",
+  host: "mysql-2b1fb47c-dhanushlib.a.aivencloud.com",
+  user: "avnadmin",
+  password: "AVNS_sdwvMqm_eFn5ewoJXi3",
+  database: "npm",
+  port: "21992",
 });
-
-// const db = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "9943060731",
-//   database: "login",
-//   port: "3306",
-// });
 
 db.connect((err) => {
   if (err) {
@@ -172,7 +156,7 @@ app.post("/mail/:x/:name/:address", (req, res) => {
   });
 });
 
-app.post("/signup", (req, res) => {
+app.get("/signup", (req, res) => {
   let sql =
     "INSERT INTO log(username,password,emailid,status,cid,currentid) VALUES(?,?,?,1,1,1)";
   let email = req.body.email;
@@ -181,12 +165,18 @@ app.post("/signup", (req, res) => {
   db.query(sql, [user, pass, email], (err, results) => {
     if (!err) {
       res.send("success");
+
       console.log(results);
     } else {
       console.log(err);
     }
   });
 });
+
+// app.get("/signup", (req, res) => {
+//   res.send("signup");
+// });
+
 app.post("/home", (req, res) => {
   let search = req.body.search;
   let sql = "SELECT * FROM datalocat WHERE location=?";
@@ -200,6 +190,7 @@ app.post("/home", (req, res) => {
     }
   });
 });
+
 app.post("/adminhome", (req, res) => {
   let search = req.body.search;
   let sql = "SELECT * FROM datalocation WHERE loaction=?";

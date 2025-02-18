@@ -20,31 +20,29 @@ function Adminhome() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    axios
-      .post("https://covid-4-lhxq.onrender.com/home", { search })
-      .then((res) => {
-        if (res.data == "fail") {
-          alert("Please enter another location");
-          console.log(res);
-        } else {
-          console.log(search);
-          console.log(res);
+    axios.post("http://localhost:8081/home", { search }).then((res) => {
+      if (res.data == "fail") {
+        alert("Please enter another location");
+        console.log(res);
+      } else {
+        console.log(search);
+        console.log(res);
 
-          let loaction = res.data[0].loaction;
-          let address = res.data[0].address;
-          let time = res.data[0].time;
-          let slot = res.data[0].slot;
+        let loaction = res.data[0].loaction;
+        let address = res.data[0].address;
+        let time = res.data[0].time;
+        let slot = res.data[0].slot;
 
-          getCentre();
-        }
-      });
+        getCentre();
+      }
+    });
   }
   useEffect(() => {
     getAll();
   }, []);
   function getAll() {
     axios
-      .get("https://covid-4-lhxq.onrender.com/home1")
+      .get("http://localhost:8081/home1")
       .then((res) => {
         setcentres(res.data);
       })
@@ -55,7 +53,7 @@ function Adminhome() {
 
   function getCentre() {
     axios
-      .get("https://covid-4-lhxq.onrender.com/home2/" + search)
+      .get("http://localhost:8081/home2/" + search)
       .then((res) => {
         setcentres(res.data);
       })
@@ -65,7 +63,7 @@ function Adminhome() {
   }
   function slot(id) {
     axios
-      .get(`https://covid-4-lhxq.onrender.com/homeslot/${id}`)
+      .get(`http://localhost:8081/homeslot/${id}`)
       .then((res) => {
         console.log(res);
         alert("slot added");
@@ -77,7 +75,7 @@ function Adminhome() {
   }
   function reset(id) {
     axios
-      .get(`https://covid-4-lhxq.onrender.com/homereset/${id}`)
+      .get(`http://localhost:8081/homereset/${id}`)
       .then((res) => {
         console.log(res);
         alert("slot reseted");
@@ -106,7 +104,7 @@ function Adminhome() {
     const avab = "hello";
     axios
       .post(
-        `https://covid-4-lhxq.onrender.com/homeadding/${name}/${address}/${pincode}/${closingtime}/${time}/${location}/${dosage}`
+        `http://localhost:8081/homeadding/${name}/${address}/${pincode}/${closingtime}/${time}/${location}/${dosage}`
       )
       .then((res) => {
         console.log(res.data);
@@ -119,10 +117,11 @@ function Adminhome() {
 
   function rem(id) {
     axios
-      .delete(`https://covid-4-lhxq.onrender.com/homerem/${id}`)
+      .delete(`http://localhost:8081/homerem/${id}`)
       .then((res) => {
         if (res.data === "success") {
           console.log("Delete successful:", res.data);
+          window.location.reload();
           alert("data removed");
         } else {
           alert("ID not found");
@@ -133,18 +132,16 @@ function Adminhome() {
       });
   }
   function dosadd(id, dosid) {
-    axios
-      .get(`https://covid-4-lhxq.onrender.com/dosadd/${id}/${dosid}`)
-      .then((res) => {
-        if (res.data === "success") {
-          alert("Dose added to the list");
-          window.location.reload();
-        }
-      });
+    axios.get(`http://localhost:8081/dosadd/${id}/${dosid}`).then((res) => {
+      if (res.data === "success") {
+        alert("Dose added to the list");
+        window.location.reload();
+      }
+    });
   }
   function checkst() {
     axios
-      .get(`https://covid-4-lhxq.onrender.com/homecheck`)
+      .get(`http://localhost:8081/homecheck`)
       .then((res) => {
         if (res.data === "true") {
         } else {
