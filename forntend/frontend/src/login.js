@@ -12,7 +12,7 @@ function Login() {
     event.preventDefault();
 
     axios
-      .post("https://covid-jw9g.onrender.com//", { username, password })
+      .post("https://covid-jw9g.onrender.com/", { username, password })
       .then((res) => {
         if (res.data === "fail") {
           console.log(res.data);
