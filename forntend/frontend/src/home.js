@@ -181,8 +181,6 @@ function Home() {
       <div
         style={{
           backgroundImage: `url(${image})`,
-          backgroundPosition: "center",
-          backgroundSize: "contain",
         }}
         className="container"
       >

@@ -1,6 +1,6 @@
 /* General Page Styling */
 .container {
-    min-height: 100vh;
+    
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -122,7 +122,7 @@
   
 
   #dropsearch{
-    width: 30%;
+    min-width: 210px;
     min-height: 35px;
     border-radius: 5px;
   
@@ -130,7 +130,7 @@
 
   @media (max-width: 500px) {
     #dropsearch{
-        min-width: 310px;
+        min-width:100%;
     }
 
     
