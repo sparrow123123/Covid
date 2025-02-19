@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "./header";
 import image from "./assest/6471562.jpg";
 import Hdrop from "./Hdrop";
+import "./Home.css";
 
 function Home() {
   const [search, setsearch] = useState("");
@@ -181,11 +182,11 @@ function Home() {
         style={{
           backgroundImage: `url(${image})`,
           backgroundPosition: "center",
-          backgroundSize: "cover",
+          backgroundSize: "contain",
         }}
         className="container"
       >
-        <div className="navbar">
+        {/* <div className="navbar">
           <div className="navlist">
             <button
               onClick={() => {
@@ -204,11 +205,11 @@ function Home() {
               Appoinment
             </button>
           </div>
-        </div>
+        </div> */}
 
         <div className="contmain">
           <Hdrop></Hdrop>
-          <h2 id="locathead">HOSPITAL</h2>
+          {/* <h2 id="locathead">HOSPITAL</h2>
           <label htmlFor="seacrch"></label>
           <input
             type="text"
@@ -216,14 +217,18 @@ function Home() {
             name="search"
             placeholder="Search..."
             onChange={(e) => setsearch(e.target.value)}
-          />
-          <button id="s-btn" onClick={handleSubmit}>
+          /> */}
+          {/* <button id="s-btn" onClick={handleSubmit}>
             search
-          </button>
-          <h2>LOACTION</h2>
+          </button> */}
 
           <div className="dropdown">
-            <input type="text" id="dropsearch"></input>
+            <h2>LOACTION</h2>
+            <input
+              type="text"
+              id="dropsearch"
+              placeholder="Enter the location"
+            ></input>
             <button
               id="s-btn"
               onClick={() => {

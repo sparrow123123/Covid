@@ -1,36 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import image from "./assest/5382378.jpg";
+import "./ABC.css"; // Import CSS
 
 function Abc() {
-  const [value, setvalue] = useState("");
   const navigate = useNavigate();
+
   return (
-    <div
-      style={{
-        backgroundImage: `url(${image})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }}
-    >
+    <div className="abc-container" style={{ backgroundImage: `url(${image})` }}>
       <div className="first">
-        <button
-          style={{ marginLeft: "80%" }}
-          id="abcbtn"
-          onClick={() => {
-            navigate("/login");
-          }}
-        >
-          login
+        <button id="abcbtn" onClick={() => navigate("/login")}>
+          Login
         </button>
-        <button
-          style={{ marginLeft: "0px" }}
-          id="abcbtn"
-          onClick={() => {
-            navigate("/signup");
-          }}
-        >
-          signup
+        <button id="abcbtn" onClick={() => navigate("/signup")}>
+          Signup
         </button>
       </div>
     </div>

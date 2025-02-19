@@ -1,0 +1,34 @@
+/* Full-page background styling */
+.abc-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* Button container */
+  .first {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px;
+  }
+  
+  /* Button styling */
+  #abcbtn {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #ed2578d5;
+    color: white;
+  }
+  
+  #abcbtn:hover {
+    background-color: #4fafdb;
+  }
+  

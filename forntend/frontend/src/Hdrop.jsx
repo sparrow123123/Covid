@@ -1,54 +1,62 @@
-import React,{useState,useEffect} from 'react'
-import axios from 'axios';
+import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios";
+import "./Hdrop.css"; // Import CSS
 
 function Hdrop() {
-    const [Hdrop, setHDrop] = useState([]);
-    // console.log(Hdrop)
-   useEffect(()=>{
-    function hlocation(){
-        axios.get('https://covid-4-lhxq.onrender.com/hlocation').then((res)=>{
-            console.log(res.data)
-            setHDrop(res.data)
-        
+  const [hospitals, setHospitals] = useState([]);
+  const [selectedHospital, setSelectedHospital] = useState("");
 
-            // console.log(Hdrop)
-        }).catch((Err)=>{
-            console.error(Err)
-        })
-    
-    }
-    hlocation()
-   },[])
-   
- 
-   
-   
-    
+  const fetchHospitals = useCallback(() => {
+    axios
+      .get("https://covid-4-lhxq.onrender.com/hlocation")
+      .then((res) => {
+        console.log("Fetched Hospitals:", res.data);
+        setHospitals(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching hospitals:", err);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetchHospitals();
+  }, [fetchHospitals]);
+
   return (
-    <div style={{display:"flex", alignItems:'center'}}>
-        <h2>HOSPITAL</h2>
-       
-        < select name="hlocation" id="hlocation" onChange={e=>setHDrop(e.target.value)}>
-            
-            {Hdrop.map((drops)=>(
-                
-                <option key={drops.centreid}  >{drops.name}</option>
-            ))
-                
-            }
-        </select>
-        <button >search</button>
+    <div className="hdrop-container">
+      <h1>HOSPITAL</h1>
+
+      <select
+        className="hdrop-select"
+        name="hlocation"
+        id="hlocation"
+        value={selectedHospital}
+        onChange={(e) => setSelectedHospital(e.target.value)}
+      >
+        <option value="" disabled>
+          Select a hospital
+        </option>
+        {hospitals.map((hospital) => (
+          <option key={hospital.centreid} value={hospital.name}>
+            {hospital.name}
+          </option>
+        ))}
+      </select>
+
+      <button
+        className="hdrop-btn"
+        onClick={() => {
+          if (selectedHospital) {
+            alert(`Searching for: ${selectedHospital}`);
+          } else {
+            alert("Please select a hospital first.");
+          }
+        }}
+      >
+        Search
+      </button>
     </div>
-    
-
-
-
-
-
-
-
-
-  )
+  );
 }
 
-export default Hdrop
+export default Hdrop;

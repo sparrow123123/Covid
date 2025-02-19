@@ -1,21 +1,30 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "./Signup.css"; // Import CSS file
 
 function Signup() {
-  const [email, setemail] = useState("");
-  const [user, setuser] = useState("");
-  const [pass, setpass] = useState("");
-  let navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   function handleSubmit(event) {
     event.preventDefault();
+
     axios
-      .get("https://covid-jw9g.onrender.com/signup", { email, user, pass })
+      .post("https://covid-jw9g.onrender.com/signup", {
+        email,
+        username,
+        password,
+      })
       .then((res) => {
-        console.log(res);
-        alert("account created");
+        alert("Account created successfully!");
         navigate("/");
+      })
+      .catch((err) => {
+        console.error("Signup failed:", err);
+        alert("Error creating account. Please try again.");
       });
   }
 
@@ -24,54 +33,52 @@ function Signup() {
       <div className="outlet">
         <form onSubmit={handleSubmit}>
           <div className="item">
-            <h1>Create Acount</h1>
-            <label htmlFor="emailid">
-              <b>Mail Id</b>
+            <h1>Create Account</h1>
+
+            <label htmlFor="email">
+              <b>Email</b>
             </label>
-            <br />
             <input
               type="email"
-              id="emailid"
-              placeholder="enter email"
-              onChange={(e) => setemail(e.target.value)}
-            ></input>
-            <br></br>
-            <br></br>
+              id="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
 
             <label htmlFor="username">
-              <b>USERNAME</b>:{" "}
+              <b>Username</b>
             </label>
-            <br />
             <input
               type="text"
               id="username"
-              name="username"
-              placeholder="Username"
-              onChange={(e) => setuser(e.target.value)}
+              placeholder="Enter username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
             />
-            <br />
-            <br></br>
 
             <label htmlFor="password">
-              <b>PASSWORD:</b>{" "}
+              <b>Password</b>
             </label>
-            <br />
             <input
-              type="number"
+              type="password"
               id="password"
-              placeholder="Password"
-              onChange={(e) => setpass(e.target.value)}
-            ></input>
-            <br></br>
-            <button id="create-btn">Create Account</button>
-            <button
-              onClick={() => {
-                navigate("/login");
-              }}
-              id="create-btn"
-            >
-              Login
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+
+            <button id="create-btn" type="submit">
+              Create Account
             </button>
+
+            <p>Already have an account?</p>
+            <Link to="/login">
+              <button id="login-btn">Login</button>
+            </Link>
           </div>
         </form>
       </div>

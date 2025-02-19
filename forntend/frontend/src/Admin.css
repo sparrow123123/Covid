@@ -1,0 +1,193 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+  
+  .navbar button {
+    background: #d9534f;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .navbar button:hover {
+    background: #c9302c;
+  }
+  
+  /* Search Section */
+  #quick {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  #quick h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  #quick input {
+    width: 50%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #quick button {
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  #quick button:hover {
+    background: #0056b3;
+  }
+  
+
+  .option {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .add,
+  .remove {
+    background: #e9ecef;
+    padding: 15px;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 300px;
+    margin: 10px;
+  }
+  
+  .add h2,
+  .remove h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .add div,
+  .remove div {
+    margin-bottom: 10px;
+  }
+  
+  .add input,
+  .remove input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .add button,
+  .remove button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add button:hover,
+  .remove button:hover {
+    background: #218838;
+  }
+  
+  /* Table */
+  .maintable {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+  }
+  
+  .maintable th,
+  .maintable td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .maintable th {
+    background: #007bff;
+    color: white;
+  }
+  
+  .maintable tr:nth-child(even) {
+    background: #f8f9fa;
+  }
+  
+  .maintable tr:hover {
+    background: #e2e6ea;
+  }
+  
+  /* Buttons inside table */
+  .maintable button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .maintable button:nth-child(1) {
+    background: #ffc107;
+    color: black;
+  }
+  
+  .maintable button:nth-child(1):hover {
+    background: #e0a800;
+  }
+  
+  .maintable button:nth-child(2) {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .maintable button:nth-child(2):hover {
+    background: #c82333;
+  }
+  
+
+  @media (max-width: 768px) {
+    .option {
+      flex-direction: column;
+    }
+  
+    #quick input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    
+  }
+
+  

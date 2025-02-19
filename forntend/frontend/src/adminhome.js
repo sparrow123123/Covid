@@ -1,392 +1,278 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Admin.css";
 
 function Adminhome() {
-  const [search, setsearch] = useState("");
-  const [location, setlocation] = useState("");
-  const [address, setaddress] = useState("");
-  const [time, settime] = useState("");
-  const [id, setid] = useState("");
-  const [name, setname] = useState("");
-  const [pincode, setpincode] = useState("");
-  const [closingtime, setclosingtime] = useState("");
-  const [dosage, setdosage] = useState("");
-  const [dosid, setdosid] = useState("");
-
-  const [centres, setcentres] = useState([]);
+  const [search, setSearch] = useState("");
+  const [location, setLocation] = useState("");
+  const [address, setAddress] = useState("");
+  const [openingTime, setOpeningTime] = useState("");
+  const [closingTime, setClosingTime] = useState("");
+  const [name, setName] = useState("");
+  const [pincode, setPincode] = useState("");
+  const [dosage, setDosage] = useState("");
+  const [dosid, setDosid] = useState("");
+  const [centres, setCentres] = useState([]);
   const navigate = useNavigate();
 
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    axios
-      .post(" https://covid-jw9g.onrender.com/home", { search })
-      .then((res) => {
-        if (res.data == "fail") {
-          alert("Please enter another location");
-          console.log(res);
-        } else {
-          console.log(search);
-          console.log(res);
-
-          let loaction = res.data[0].loaction;
-          let address = res.data[0].address;
-          let time = res.data[0].time;
-          let slot = res.data[0].slot;
-
-          getCentre();
-        }
-      });
-  }
   useEffect(() => {
-    getAll();
+    fetchCentres();
   }, []);
-  function getAll() {
-    axios
-      .get(" https://covid-jw9g.onrender.com/home1")
-      .then((res) => {
-        setcentres(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
 
-  function getCentre() {
-    axios
-      .get(" https://covid-jw9g.onrender.com/home2/" + search)
-      .then((res) => {
-        setcentres(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-  function slot(id) {
-    axios
-      .get(` https://covid-jw9g.onrender.com/homeslot/${id}`)
-      .then((res) => {
-        console.log(res);
-        alert("slot added");
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-  function reset(id) {
-    axios
-      .get(` https://covid-jw9g.onrender.com/homereset/${id}`)
-      .then((res) => {
-        console.log(res);
-        alert("slot reseted");
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+  // Fetch all centres
+  const fetchCentres = async () => {
+    try {
+      const res = await axios.get("https://covid-jw9g.onrender.com/home1");
+      setCentres(res.data);
+    } catch (err) {
+      console.error("Error fetching centres:", err);
+    }
+  };
 
-  // function add(address,loaction,time,name,pincode,closingtime,dosage){
-
-  //           axios.post(` https://covid-jw9g.onrender.com/homeadding/${address}/${loaction}/${time}/${name}/${pincode}/${closingtime}/${dosage}`)
-  //           .then((res) => {
-  //             console.log(address);
-  //             console.log(res);
-  //           })
-  //           .catch((err) => {
-  //             console.error(err);
-  //             });
-
-  //         console.log(address,loaction);
-  // }
-
-  function add() {
-    const avab = "hello";
-    axios
-      .post(
-        ` https://covid-jw9g.onrender.com/homeadding/${name}/${address}/${pincode}/${closingtime}/${time}/${location}/${dosage}`
-      )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
+  // Search for a vaccination centre
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!search.trim()) {
+      alert("Please enter a valid location.");
+      return;
+    }
+    try {
+      const res = await axios.post("https://covid-jw9g.onrender.com/home", {
+        search,
       });
-    window.location.href = "/adminhome";
-  }
+      if (res.data === "fail") {
+        alert("Please enter another location.");
+      } else {
+        fetchCentres();
+      }
+    } catch (err) {
+      console.error("Search error:", err);
+    }
+  };
 
-  function rem(id) {
-    axios
-      .delete(` https://covid-jw9g.onrender.com/homerem/${id}`)
-      .then((res) => {
-        if (res.data === "success") {
-          console.log("Delete successful:", res.data);
-          window.location.reload();
-          alert("data removed");
-        } else {
-          alert("ID not found");
-        }
-      })
-      .catch((error) => {
-        console.error("Error deleting resource:", error);
-      });
-  }
-  function dosadd(id, dosid) {
-    axios
-      .get(` https://covid-jw9g.onrender.com/dosadd/${id}/${dosid}`)
-      .then((res) => {
-        if (res.data === "success") {
-          alert("Dose added to the list");
-          window.location.reload();
-        }
-      });
-  }
-  function checkst() {
-    axios
-      .get(` https://covid-jw9g.onrender.com/homecheck`)
-      .then((res) => {
-        if (res.data === "true") {
-        } else {
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+  // Book a slot
+  const bookSlot = async (id) => {
+    try {
+      await axios.get(`https://covid-jw9g.onrender.com/homeslot/${id}`);
+      alert("Slot added successfully!");
+      fetchCentres();
+    } catch (err) {
+      console.error("Error booking slot:", err);
+    }
+  };
+
+  // Reset slots
+  const resetSlot = async (id) => {
+    try {
+      await axios.get(`https://covid-jw9g.onrender.com/homereset/${id}`);
+      alert("Slot reset successfully!");
+      fetchCentres();
+    } catch (err) {
+      console.error("Error resetting slot:", err);
+    }
+  };
+
+  // Add a new vaccination centre
+  const addCentre = async () => {
+    try {
+      await axios.post(
+        `https://covid-jw9g.onrender.com/homeadding/${name}/${address}/${pincode}/${closingTime}/${openingTime}/${location}/${dosage}`
+      );
+      alert("Centre added successfully!");
+      fetchCentres();
+    } catch (err) {
+      console.error("Error adding centre:", err);
+    }
+  };
+
+  // Remove a centre by ID
+  const removeCentre = async (id) => {
+    try {
+      const res = await axios.delete(
+        `https://covid-jw9g.onrender.com/homerem/${id}`
+      );
+      if (res.data === "success") {
+        alert("Centre removed successfully!");
+        fetchCentres();
+      } else {
+        alert("Centre ID not found.");
+      }
+    } catch (err) {
+      console.error("Error removing centre:", err);
+    }
+  };
+
+  // Add dosage
+  const addDosage = async (id, dosid) => {
+    try {
+      const res = await axios.get(
+        `https://covid-jw9g.onrender.com/dosadd/${id}/${dosid}`
+      );
+      if (res.data === "success") {
+        alert("Dosage added successfully!");
+        fetchCentres();
+      }
+    } catch (err) {
+      console.error("Error adding dosage:", err);
+    }
+  };
 
   return (
-    <>
-      <div className="containerd">
-        <div id="quick">
-          <div className="navbar">
-            <div className="navlist">
-              <button
-                onClick={() => {
-                  checkst();
-
-                  navigate("/login");
-                }}
-              >
-                logout
-              </button>
-            </div>
-          </div>
-          <h1>ADMIN</h1>
-
-          <label htmlFor="seacrch">Enter the location</label>
-          <input
-            type="text"
-            id="search"
-            name="search"
-            placeholder="Search..."
-            onChange={(e) => setsearch(e.target.value)}
-          />
-
-          <button id="s-btn" onClick={handleSubmit}>
-            search
-          </button>
-        </div>
-
-        <div className="option">
-          <div className="add">
-            <h2>Add loaction</h2>
-            <br></br>
-            <div id="additem">
-              <label htmlFor="name">
-                <h3>Name</h3>
-              </label>
-              <input
-                style={{ marginLeft: "80px" }}
-                type="text"
-                name="name"
-                onChange={(e) => setname(e.target.value)}
-                placeholder="Hospital Name"
-              ></input>
-              <br></br>
-            </div>
-
-            <div id="additem">
-              <label htmlFor="location">
-                {" "}
-                <h3>Enter location</h3>
-              </label>
-              <input
-                type="text"
-                name="location"
-                onChange={(e) => setlocation(e.target.value)}
-                placeholder="eg.chennai"
-              />
-              <br></br>
-              <label htmlFor="address">
-                <h3>Enter Address </h3>
-              </label>
-              <input
-                type=""
-                name="address"
-                onChange={(e) => setaddress(e.target.value)}
-              />
-              <br></br>
-              <label htmlFor="pincode">
-                <h3>Pincode</h3>
-              </label>
-              <input
-                type="number"
-                name="pincode"
-                onChange={(e) => setpincode(e.target.value)}
-              ></input>
-              <br></br>
-            </div>
-
-            <div id="additem">
-              <label htmlFor="openingtime">
-                <h3>Opening Time </h3>
-              </label>
-              <input
-                style={{ marginLeft: "9px" }}
-                type="number"
-                name="openingtime"
-                onChange={(e) => settime(e.target.value)}
-                placeholder="12am-12pm"
-              />
-              <br></br>
-              <label htmlFor="closingtime">
-                <h3>closing Time </h3>
-              </label>
-              <input
-                type="number"
-                name="closingtime"
-                onChange={(e) => setclosingtime(e.target.value)}
-              />
-              <br></br>
-            </div>
-
-            <div id="additem">
-              <label htmlFor="dosage">
-                <h3>Enter dosage </h3>
-              </label>
-              <input
-                style={{ marginLeft: "19px" }}
-                type="number"
-                name="dosage"
-                onChange={(e) => setdosage(e.target.value)}
-              />
-              {/* <label htmlFor='specialist'><h3>domian </h3></label>
-        <input style={{marginLeft:"19px"}} type='text' name='specialist'  /> */}
-
-              <br></br>
-            </div>
+    <div className="container">
+      <div id="quick">
+        {/* <div className="navbar">
+          <div className="navlist">
             <button
               onClick={() => {
-                // add(address,location,time,name,pincode,closingtime,dosage);
-                add();
-                alert("data added");
-                // window.location.reload();
+                navigate("/login");
               }}
             >
-              Add Address
+              Logout
             </button>
           </div>
-          <br></br>
+        </div> */}
+        <h1>ADMIN PANEL</h1>
 
-          <div className="remove">
-            <h3>REMOVE DATA</h3>
-            <div id="remitem">
-              <label htmlFor="id"></label>
-              <input
-                type="number"
-                name="id"
-                onChange={(e) => setid(e.target.value)}
-                placeholder="ENTER ID"
-              />
-
-              <button
-                onClick={() => {
-                  rem(id);
-                }}
-              >
-                Remove Data
-              </button>
-            </div>
-          </div>
-
-          <h1>Vaccination Centre</h1>
-        </div>
-        <table className="maintable">
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>Name</th>
-              <th>Location</th>
-              <th>address</th>
-              <th>Pincode</th>
-              <th>Opening</th>
-              <th>Closing</th>
-
-              <th>slot</th>
-              <th>Dosages</th>
-              <th>book</th>
-              <th>reset</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {centres.map((centre) => (
-              <tr key={centre.centreid}>
-                <td id="slot">{centre.centreid}</td>
-                <td>{centre.name}</td>
-                <td>{centre.location}</td>
-                <td>{centre.address}</td>
-                <td>{centre.pincode}</td>
-                <td>{centre.optime}AM</td>
-                <td>{centre.cltime}PM</td>
-
-                <td>{centre.slot}</td>
-                <td>
-                  {centre.dosage}
-                  <label htmlFor="doscount"></label>
-                  <input
-                    id="doscount"
-                    type="number"
-                    name="doscount"
-                    onChange={(e) => setdosid(e.target.value)}
-                  />
-                  <button
-                    id="dosbtn"
-                    onClick={() => {
-                      dosadd(centre.centreid, dosid);
-                    }}
-                  >
-                    add
-                  </button>
-                </td>
-                <td>
-                  <button
-                    id="bookbtn"
-                    onClick={() => {
-                      slot(centre.centreid);
-                    }}
-                  >
-                    book
-                  </button>
-                </td>
-                <td>
-                  <button
-                    id="resetbtn"
-                    onClick={() => {
-                      reset(centre.centreid);
-                    }}
-                  >
-                    reset
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <label htmlFor="search">Enter the location</label>
+        <input
+          type="text"
+          id="search"
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button id="s-btn" onClick={handleSubmit}>
+          Search
+        </button>
       </div>
-    </>
+
+      {/* Add Centre */}
+      <div className="option">
+        <div className="add">
+          <h2>Add New Centre</h2>
+          <div>
+            <label>Name</label>
+            <input
+              type="text"
+              placeholder="Hospital Name"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Location</label>
+            <input
+              type="text"
+              placeholder="City"
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Address</label>
+            <input
+              type="text"
+              placeholder="Street Address"
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Pincode</label>
+            <input
+              type="number"
+              placeholder="Pincode"
+              onChange={(e) => setPincode(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Opening Time</label>
+            <input
+              type="number"
+              placeholder="Opening time"
+              onChange={(e) => setOpeningTime(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Closing Time</label>
+            <input
+              type="number"
+              placeholder="Closing time"
+              onChange={(e) => setClosingTime(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Dosage</label>
+            <input
+              type="number"
+              placeholder="Dosage count"
+              onChange={(e) => setDosage(e.target.value)}
+            />
+          </div>
+          <button onClick={addCentre}>Add Centre</button>
+        </div>
+
+        {/* Remove Centre */}
+        <div className="remove">
+          <h3>Remove Centre</h3>
+          <input
+            type="number"
+            placeholder="Enter Centre ID"
+            onChange={(e) => setDosid(e.target.value)}
+          />
+          <button onClick={() => removeCentre(dosid)}>Remove</button>
+        </div>
+      </div>
+
+      {/* Centre Table */}
+      <h1>Vaccination Centres</h1>
+      <table className="maintable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Address</th>
+            <th>Pincode</th>
+            <th>Opening</th>
+            <th>Closing</th>
+            <th>Slots</th>
+            <th>Dosages</th>
+            <th>Book</th>
+            <th>Reset</th>
+          </tr>
+        </thead>
+        <tbody>
+          {centres.map((centre) => (
+            <tr key={centre.centreid}>
+              <td>{centre.centreid}</td>
+              <td>{centre.name}</td>
+              <td>{centre.location}</td>
+              <td>{centre.address}</td>
+              <td>{centre.pincode}</td>
+              <td>{centre.optime} AM</td>
+              <td>{centre.cltime} PM</td>
+              <td>{centre.slot}</td>
+              <td>
+                <input
+                  type="number"
+                  onChange={(e) => setDosid(e.target.value)}
+                />
+                <button onClick={() => addDosage(centre.centreid, dosid)}>
+                  Add
+                </button>
+              </td>
+              <td>
+                <button onClick={() => bookSlot(centre.centreid)}>Book</button>
+              </td>
+              <td>
+                <button onClick={() => resetSlot(centre.centreid)}>
+                  Reset
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

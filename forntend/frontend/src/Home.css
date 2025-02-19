@@ -1,0 +1,137 @@
+/* General Page Styling */
+.container {
+    min-height: 100vh;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    color: #333;
+  }
+  
+  /* Navbar */
+  .navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+  }
+  
+  /* Buttons */
+  .navlist button,
+  #s-btn,
+  #bk {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .navlist button:hover,
+  #s-btn:hover,
+  #bk:hover {
+    background: #0056b3;
+  }
+  
+  /* Search Bar */
+  #search {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 5px;
+  }
+  
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background: #f8f8f8;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  /* Dropdown */
+  .dropdown {
+    
+    
+   color: #333;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+   
+    display: none;
+    position: absolute;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    width: 100%;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content button {
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .dropdown-content button:hover {
+ 
+    background: #f1f1f1;
+    color: #306bbf;
+  }
+
+  .contmain{
+    padding: 5%;
+    width: 100%;
+  }
+
+  .dropdown{
+  
+    width: 100%;
+  }
+  
+
+  #dropsearch{
+    width: 30%;
+    min-height: 35px;
+    border-radius: 5px;
+  
+  }
+
+  @media (max-width: 500px) {
+    #dropsearch{
+        min-width: 310px;
+    }
+
+    
+  }

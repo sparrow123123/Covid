@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import image from "./assest/1663.jpg";
+import "./Login.css"; // Import the CSS file
+import backgroundImage from "./assest/1663.jpg"; // Ensure this path is correct
+
 function Login() {
-  const [username, setusername] = useState("");
-  const [password, setpassword] = useState("");
-  const backgroundImage = 'url("path/to/your/image.jpg")';
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -15,7 +16,6 @@ function Login() {
       .post("https://covid-jw9g.onrender.com/", { username, password })
       .then((res) => {
         if (res.data === "fail") {
-          console.log(res.data);
           alert("Invalid username or password");
         } else {
           if (
@@ -24,70 +24,55 @@ function Login() {
           ) {
             navigate("/adminhome");
           } else {
-            update();
-
+            updateUserStatus();
             navigate("/home");
           }
         }
       })
-      .catch((err) => {
-        console.log("fail");
-      });
-  }
-  function update() {
-    axios
-      .get(`https://covid-jw9g.onrender.com/update/${username}/${password}`)
-      .then((res) => {
-        console.log(res);
+      .catch(() => {
+        alert("Login failed. Please try again.");
       });
   }
 
+  function updateUserStatus() {
+    axios
+      .get(`https://covid-jw9g.onrender.com/update/${username}/${password}`)
+      .then((res) => console.log(res));
+  }
+
   return (
-    <div
-      style={{
-        backgroundImage: `url(${image})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }}
-      className="log"
-    >
+    <div className="log" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="outlet">
         <form onSubmit={handleSubmit}>
           <div className="item">
             <h1>Login</h1>
-            <label htmlFor="username">
-              <b>USERNAME</b>:{" "}
-            </label>
-            <br />
+            <label htmlFor="username">USERNAME:</label>
             <input
               type="text"
               id="username"
-              name="username"
-              placeholder="Username"
-              onChange={(e) => setusername(e.target.value)}
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
             />
-            <br />
-            <br></br>
 
-            <label htmlFor="password">
-              <b>PASSWORD:</b>{" "}
-            </label>
-            <br />
+            <label htmlFor="password">PASSWORD:</label>
             <input
-              type="number"
+              type="password"
               id="password"
-              placeholder="Password"
-              onChange={(e) => setpassword(e.target.value)}
-            ></input>
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
-            <button id="login-btn" onClick={() => {}}>
+            <button id="login-btn" type="submit">
               Login
             </button>
-            <b>
-              <p>Dont have a account?</p>
-            </b>
+
+            <p>Don't have an account?</p>
             <Link to="/signup">
-              <button id="search-btn">sign up</button>{" "}
+              <button id="signup-btn">Sign Up</button>
             </Link>
           </div>
         </form>

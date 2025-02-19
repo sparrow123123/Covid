@@ -1,0 +1,75 @@
+/* Main container */
+.bookin {
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+  }
+  
+  /* Header styling */
+  .bookin h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Booking details container */
+  .bookout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Booking details card */
+  .booktable {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .booktable h2 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #555;
+  }
+  
+  /* Buttons container */
+  .bookbtns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  /* Buttons */
+  .bookbtns button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .bookbtns button:first-child {
+    background-color: #ff5b5b;
+    color: white;
+  }
+  
+  .bookbtns button:first-child:hover {
+    background-color: #e04d4d;
+  }
+  
+  .bookbtns button:last-child {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .bookbtns button:last-child:hover {
+    background-color: #0056b3;
+  }
+  
