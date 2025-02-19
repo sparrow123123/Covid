@@ -119,7 +119,7 @@ function Adminhome() {
   };
 
   return (
-    <div className="container">
+    <div className="containera">
       <div id="quick">
         {/* <div className="navbar">
           <div className="navlist">

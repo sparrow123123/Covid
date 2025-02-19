@@ -177,13 +177,8 @@ function Home() {
   }
 
   return (
-    <>
-      <div
-        style={{
-          backgroundImage: `url(${image})`,
-        }}
-        className="container"
-      >
+    <div className="m1" style={{}}>
+      <div className="container">
         {/* <div className="navbar">
           <div className="navlist">
             <button
@@ -424,7 +419,7 @@ function Home() {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }
 
