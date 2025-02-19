@@ -7,6 +7,8 @@ body {
   }
   
   .containera {
+    z-index:1;
+    position: relative;
     width: 90%;
     max-width: 1200px;
     margin: 20px auto;
@@ -19,17 +21,23 @@ body {
   .navbar {
     display: flex;
     justify-content: flex-end;
-    padding: 10px;
+   
   }
+
   
   .navbar button {
     background: #d9534f;
     color: white;
-    padding: 10px 15px;
+    padding: 10px 5px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    
+    
+  }
+  #nbt{
+    margin: 5px;
   }
   
   .navbar button:hover {

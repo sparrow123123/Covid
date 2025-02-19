@@ -121,9 +121,10 @@ function Adminhome() {
   return (
     <div className="containera">
       <div id="quick">
-        {/* <div className="navbar">
+        <div className="navbar">
           <div className="navlist">
             <button
+              id="nbt"
               onClick={() => {
                 navigate("/login");
               }}
@@ -131,7 +132,7 @@ function Adminhome() {
               Logout
             </button>
           </div>
-        </div> */}
+        </div>
         <h1>ADMIN PANEL</h1>
 
         <label htmlFor="search">Enter the location</label>

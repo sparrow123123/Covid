@@ -179,7 +179,7 @@ function Home() {
   return (
     <div className="m1" style={{}}>
       <div className="container">
-        {/* <div className="navbar">
+        <div className="navbar">
           <div className="navlist">
             <button
               onClick={() => {
@@ -198,7 +198,7 @@ function Home() {
               Appoinment
             </button>
           </div>
-        </div> */}
+        </div>
 
         <div className="contmain">
           <Hdrop></Hdrop>
